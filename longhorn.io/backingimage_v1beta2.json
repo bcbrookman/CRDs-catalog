@@ -2,11 +2,11 @@
   "description": "BackingImage is where Longhorn stores backing image object.",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string"
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string"
     },
     "metadata": {
@@ -18,14 +18,44 @@
         "checksum": {
           "type": "string"
         },
+        "diskFileSpecMap": {
+          "additionalProperties": {
+            "properties": {
+              "evictionRequested": {
+                "type": "boolean"
+              }
+            },
+            "type": "object",
+            "additionalProperties": false
+          },
+          "type": "object"
+        },
+        "diskSelector": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "disks": {
           "additionalProperties": {
             "type": "string"
           },
+          "description": "Deprecated. We are now using DiskFileSpecMap to assign different spec to the file on different disks.",
           "type": "object"
         },
-        "imageURL": {
-          "description": "Deprecated: This kind of info will be included in the related BackingImageDataSource.",
+        "minNumberOfCopies": {
+          "type": "integer"
+        },
+        "nodeSelector": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "secretNamespace": {
           "type": "string"
         },
         "sourceParameters": {
@@ -38,7 +68,9 @@
           "enum": [
             "download",
             "upload",
-            "export-from-volume"
+            "export-from-volume",
+            "restore",
+            "clone"
           ],
           "type": "string"
         }
@@ -51,23 +83,6 @@
       "properties": {
         "checksum": {
           "type": "string"
-        },
-        "diskDownloadProgressMap": {
-          "additionalProperties": {
-            "type": "integer"
-          },
-          "description": "Deprecated: Replaced by field `Progress` in `DiskFileStatusMap`.",
-          "nullable": true,
-          "type": "object"
-        },
-        "diskDownloadStateMap": {
-          "additionalProperties": {
-            "description": "BackingImageDownloadState is replaced by BackingImageState.",
-            "type": "string"
-          },
-          "description": "Deprecated: Replaced by field `State` in `DiskFileStatusMap`.",
-          "nullable": true,
-          "type": "object"
         },
         "diskFileStatusMap": {
           "additionalProperties": {
@@ -107,6 +122,11 @@
         },
         "uuid": {
           "type": "string"
+        },
+        "virtualSize": {
+          "description": "Virtual size of image, which may be larger than physical size. Will be zero until known (e.g. while a backing image is uploading)",
+          "format": "int64",
+          "type": "integer"
         }
       },
       "type": "object",

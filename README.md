@@ -1,6 +1,6 @@
 # CRDs Catalog
 
-This repository aggregates over 300 popular Kubernetes CRDs (`CustomResourceDefinition`) in JSON schema format. These schemas can be used by various tools such as [Datree](https://github.com/datreeio/datree), [Kubeconform](https://github.com/yannh/kubeconform) and [Kubeval](https://github.com/instrumenta/kubeval), as an alternative to `kubectl --dry-run`, to perform validation on custom (and native) Kuberentes resources.  
+This repository aggregates hundreds of popular Kubernetes CRDs (`CustomResourceDefinition`) in JSON schema format. These schemas can be used by various tools such as [Datree](https://github.com/datreeio/datree), [Kubeconform](https://github.com/yannh/kubeconform) and [Kubeval](https://github.com/instrumenta/kubeval), as an alternative to `kubectl --dry-run`, to perform validation on custom (and native) Kubernetes resources.  
 
 Running Kubernetes schema validation checks helps apply the **"shift-left approach"** on machines **without** giving them access to your cluster (e.g. locally or on CI).
 
@@ -55,7 +55,7 @@ To use the CRD Extractor:
 
 ## Shifting left CRD validation - Video by Datree
 
-[![](https://yt-embed.live/embed?v=YUoH8WNrrwM)](https://www.youtube.com/watch?v=YUoH8WNrrwM "Shifting left CRD validation")
+<a href="https://www.youtube.com/watch?v=YUoH8WNrrwM" title="video text"><img src="https://img.youtube.com/vi/YUoH8WNrrwM/maxresdefault.jpg" width="640" height="360"></a>
 
 ---
 

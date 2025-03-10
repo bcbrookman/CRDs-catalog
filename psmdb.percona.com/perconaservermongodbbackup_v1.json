@@ -1,0 +1,205 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "properties": {
+        "clusterName": {
+          "type": "string"
+        },
+        "compressionLevel": {
+          "type": "integer"
+        },
+        "compressionType": {
+          "type": "string"
+        },
+        "psmdbCluster": {
+          "type": "string"
+        },
+        "storageName": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "logical",
+            "physical"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    },
+    "status": {
+      "properties": {
+        "azure": {
+          "properties": {
+            "container": {
+              "type": "string"
+            },
+            "credentialsSecret": {
+              "type": "string"
+            },
+            "endpointUrl": {
+              "type": "string"
+            },
+            "prefix": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "credentialsSecret"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "completed": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        },
+        "filesystem": {
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "lastTransition": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "latestRestorableTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "pbmName": {
+          "type": "string"
+        },
+        "pbmPod": {
+          "type": "string"
+        },
+        "pbmPods": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "replsetNames": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "s3": {
+          "properties": {
+            "bucket": {
+              "type": "string"
+            },
+            "credentialsSecret": {
+              "type": "string"
+            },
+            "debugLogLevels": {
+              "type": "string"
+            },
+            "endpointUrl": {
+              "type": "string"
+            },
+            "forcePathStyle": {
+              "type": "boolean"
+            },
+            "insecureSkipTLSVerify": {
+              "type": "boolean"
+            },
+            "maxUploadParts": {
+              "type": "integer"
+            },
+            "prefix": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "retryer": {
+              "properties": {
+                "maxRetryDelay": {
+                  "type": "string"
+                },
+                "minRetryDelay": {
+                  "type": "string"
+                },
+                "numMaxRetries": {
+                  "type": "integer"
+                }
+              },
+              "type": "object",
+              "additionalProperties": false
+            },
+            "serverSideEncryption": {
+              "properties": {
+                "kmsKeyID": {
+                  "type": "string"
+                },
+                "sseAlgorithm": {
+                  "type": "string"
+                },
+                "sseCustomerAlgorithm": {
+                  "type": "string"
+                },
+                "sseCustomerKey": {
+                  "type": "string"
+                }
+              },
+              "type": "object",
+              "additionalProperties": false
+            },
+            "storageClass": {
+              "type": "string"
+            },
+            "uploadPartSize": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "bucket"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "start": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "storageName": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "type": "object"
+}

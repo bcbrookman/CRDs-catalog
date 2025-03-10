@@ -2,11 +2,11 @@
   "description": "Snapshot is the Schema for the snapshots API",
   "properties": {
     "apiVersion": {
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
       "type": "string"
     },
     "kind": {
-      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
       "type": "string"
     },
     "metadata": {
@@ -28,7 +28,7 @@
           "type": "object"
         },
         "volume": {
-          "description": "the volume that this snapshot belongs to. This field is immutable after creation. Required",
+          "description": "the volume that this snapshot belongs to.\nThis field is immutable after creation.\nRequired",
           "type": "string"
         }
       },
@@ -41,6 +41,9 @@
     "status": {
       "description": "SnapshotStatus defines the observed state of Longhorn Snapshot",
       "properties": {
+        "checksum": {
+          "type": "string"
+        },
         "children": {
           "additionalProperties": {
             "type": "boolean"

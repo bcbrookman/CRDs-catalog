@@ -15,6 +15,13 @@
     "spec": {
       "description": "ProvisionerSpec is the top level provisioner specification. Provisioners launch nodes in response to pods that are unschedulable. A single provisioner is capable of managing a diverse set of nodes. Node properties are determined from a combination of provisioner and pod scheduling constraints.",
       "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations are applied to every node.",
+          "type": "object"
+        },
         "consolidation": {
           "description": "Consolidation are the consolidation parameters",
           "properties": {
@@ -40,12 +47,49 @@
               "description": "ContainerRuntime is the container runtime to be used with your worker nodes.",
               "type": "string"
             },
+            "cpuCFSQuota": {
+              "description": "CPUCFSQuota enables CPU CFS quota enforcement for containers that specify CPU limits.",
+              "type": "boolean"
+            },
             "evictionHard": {
               "additionalProperties": {
                 "type": "string"
               },
               "description": "EvictionHard is the map of signal names to quantities that define hard eviction thresholds",
               "type": "object"
+            },
+            "evictionMaxPodGracePeriod": {
+              "description": "EvictionMaxPodGracePeriod is the maximum allowed grace period (in seconds) to use when terminating pods in response to soft eviction thresholds being met.",
+              "format": "int32",
+              "type": "integer"
+            },
+            "evictionSoft": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "EvictionSoft is the map of signal names to quantities that define soft eviction thresholds",
+              "type": "object"
+            },
+            "evictionSoftGracePeriod": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "EvictionSoftGracePeriod is the map of signal names to quantities that define grace periods for each eviction signal",
+              "type": "object"
+            },
+            "imageGCHighThresholdPercent": {
+              "description": "ImageGCHighThresholdPercent is the percent of disk usage after which image garbage collection is always run. The percent is calculated by dividing this field value by 100, so this field must be between 0 and 100, inclusive. When specified, the value must be greater than ImageGCLowThresholdPercent.",
+              "format": "int32",
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "imageGCLowThresholdPercent": {
+              "description": "ImageGCLowThresholdPercent is the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to. The percent is calculated by dividing this field value by 100, so the field value must be between 0 and 100, inclusive. When specified, the value must be less than imageGCHighThresholdPercent",
+              "format": "int32",
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer"
             },
             "kubeReserved": {
               "additionalProperties": {
@@ -146,6 +190,9 @@
               "type": "string"
             }
           },
+          "required": [
+            "name"
+          ],
           "type": "object",
           "additionalProperties": false
         },

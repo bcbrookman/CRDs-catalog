@@ -1,6 +1,17 @@
 {
   "type": "object",
   "properties": {
+    "apiVersion": {
+      "type": "string",
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+    },
+    "metadata": {
+      "type": "object"
+    },
     "spec": {
       "type": "object",
       "properties": {
@@ -29,7 +40,9 @@
               }
             },
             "matchLabels": {
-              "x-kubernetes-preserve-unknown-fields": true,
+              "additionalProperties": {
+                "type": "string"
+              },
               "type": "object"
             }
           },
@@ -91,15 +104,15 @@
         },
         "pods": {
           "type": "integer",
-          "description": "Number of pods managed by the StrimziPodSet controller."
+          "description": "Number of pods managed by this `StrimziPodSet` resource."
         },
         "readyPods": {
           "type": "integer",
-          "description": "Number of pods managed by the StrimziPodSet controller that are ready."
+          "description": "Number of pods managed by this `StrimziPodSet` resource that are ready."
         },
         "currentPods": {
           "type": "integer",
-          "description": "Number of pods managed by the StrimziPodSet controller that have the current revision."
+          "description": "Number of pods managed by this `StrimziPodSet` resource that have the current revision."
         }
       },
       "description": "The status of the StrimziPodSet.",
