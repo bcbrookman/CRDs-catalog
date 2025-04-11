@@ -2277,6 +2277,10 @@
           ],
           "type": "string"
         },
+        "enableServiceLinks": {
+          "description": "Indicates whether information about services should be injected into pod's environment variables",
+          "type": "boolean"
+        },
         "enforcedNamespaceLabel": {
           "description": "EnforcedNamespaceLabel enforces adding a namespace label of origin for each alert\nand metric that is user created. The label value will always be the namespace of the object that is\nbeing created.",
           "type": "string"
@@ -6767,14 +6771,6 @@
                   },
                   "type": "array"
                 },
-                "clientAuthType": {
-                  "description": "The server policy for client TLS authentication.\n\nFor more detail on clientAuth options:\nhttps://golang.org/pkg/crypto/tls/#ClientAuthType",
-                  "type": "string"
-                },
-                "clientCAFile": {
-                  "description": "Path to the CA certificate file for client certificate authentication to\nthe server.\n\nIt is mutually exclusive with `client_ca`.",
-                  "type": "string"
-                },
                 "client_ca": {
                   "description": "Secret or ConfigMap containing the CA certificate for client certificate\nauthentication to the server.\n\nIt is mutually exclusive with `clientCAFile`.",
                   "properties": {
@@ -6829,6 +6825,14 @@
                   },
                   "type": "object",
                   "additionalProperties": false
+                },
+                "clientAuthType": {
+                  "description": "The server policy for client TLS authentication.\n\nFor more detail on clientAuth options:\nhttps://golang.org/pkg/crypto/tls/#ClientAuthType",
+                  "type": "string"
+                },
+                "clientCAFile": {
+                  "description": "Path to the CA certificate file for client certificate authentication to\nthe server.\n\nIt is mutually exclusive with `client_ca`.",
+                  "type": "string"
                 },
                 "curvePreferences": {
                   "description": "Elliptic curves that will be used in an ECDHE handshake, in preference\norder.\n\nAvailable curves are documented in the Go documentation:\nhttps://golang.org/pkg/crypto/tls/#CurveID",
